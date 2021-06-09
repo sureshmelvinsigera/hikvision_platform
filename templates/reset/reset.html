@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="{% static 'images/sprinting.png' %}" alt="sing up image"></figure>
+                </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title">Сброс пароля</h2>
+                    <form method="POST" class="register-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.serial_num }}
+                            <label>
+                                <i class="zmdi zmdi-confirmation-number material-icons-name"></i>
+                            </label>
+                        </div>
+                        <div class="custom-file">
+                            {{ form.sn_images }}
+                            <label class="custom-file-label" for="customFile">
+                                <i class="zmdi zmdi-image material-icons-name"></i>
+                                Фото серийного номера
+                            </label>
+                        </div>
+                        <div class="custom-file">
+                            {{ form.qr_code }}
+                            <label class="custom-file-label">
+                                <i class="zmdi zmdi-code-setting material-icons-name"></i>
+                                QR код
+                            </label>
+                        </div>
+
+                        <div class="custom-file">
+                            {{ form.request_file }}
+                            <label class="custom-file-label">
+                                <i class="zmdi zmdi-file material-icons-name"></i>
+                                Файл для сброса
+                            </label>
+                        </div>
+
+                        <div class="form-file">
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signin" class="form-submit" value="Отправить"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

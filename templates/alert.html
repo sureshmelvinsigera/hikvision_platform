@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<section class="signup">
+  <div class="container">
+    <div class="signup-content">
+      <div class="device-list">
+        <div class="alert alert-primary" role="alert">
+          <h4 class="alert-heading">{{ message.header }}</h4>
+          <p>{{ message.content }}</p>
+          <hr>
+          <p class="mb-0">Если у вас остались вопросы по работе сервиса, вы можете задать их в чате поддержки.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

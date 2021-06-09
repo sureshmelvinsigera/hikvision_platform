@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="device-list">
+                    {% if device_list %}
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Дата загрузки</th>
+                                <th scope="col">Статус</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for device in device_list %}
+                                <tr>
+                                    <th scope="row">id{{ device.task_id }}</th>
+                                    <th scope="row">{{ device.upload_at }}</th>
+                                    {% if device.task_status == 'finish' and device.reset_file %}
+                                        <td>
+                                            <a href="{{ device.reset_file.url }}"
+                                               style="text-decoration: none; color: #1b1e21" download>
+                                                <button type="button" class="btn btn-success btn-sm">
+                                                    Скачать
+                                                </button>
+                                            </a>
+                                        </td>
+                                    {% elif device.task_status == 'processing' %}
+                                        <td>
+                                            <button type="button" class="btn btn-secondary btn-sm">
+                                                В обработке
+                                            </button>
+                                        </td>
+                                    {% else %}
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm">
+                                                Ошибка
+                                            </button>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            <h4 class="alert-heading">У вас нету задач для сброса пароля</h4>
+                            <p>Для того чтобы создать сообщения нажмите кнопку <a href="{% url 'reset:main' %}">"Сброс
+                                пароля"</a> которая находиться выше.</p>
+                            <hr>
+                            <p class="mb-0">Если у вас остались вопросы по работе сервиса, вы можете задать их в чате
+                                поддержки.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
