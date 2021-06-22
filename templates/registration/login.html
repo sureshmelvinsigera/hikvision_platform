@@ -2,33 +2,33 @@
 {% load static %}
 
 {% block main %}
-    <section class="sign-in">
-        <div class="container">
-            <div class="signin-content">
-                <div class="signin-image">
-                    <figure><img src="{% static 'images/petting.png' %}" alt="sing up image"></figure>
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{% static 'images/petting.png' %}" alt="sing up image"></figure>
+            </div>
+            <div class="signin-form">
+                <h2 class="form-title">Вход</h2>
+                {% for error in errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
                 </div>
-                <div class="signin-form">
-                    <h2 class="form-title">Вход</h2>
-                    {% for error in errors %}
-                        <div class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>
-                    {% endfor %}
-                    <div class="form-group form-button">
-                        <script async
-                                src="https://telegram.org/js/telegram-widget.js?15"
-                                data-telegram-login="uzhikbot"
-                                data-size="big"
-                                data-radius="3"
-                                data-auth-url="http://90c56143f10d.ngrok.io/auth"
-                                data-request-access="write">
-                        </script>
-                    </div>
-                    </form>
+                {% endfor %}
+                <div class="form-group form-button">
+                    <script async
+                            src="https://telegram.org/js/telegram-widget.js?15"
+                            data-telegram-login="{{settings.TELEGRAM_BOT_NAME}}"
+                            data-size="big"
+                            data-radius="3"
+                            data-auth-url="/"
+                            data-request-access="write">
+                    </script>
                 </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}
