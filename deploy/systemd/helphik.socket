@@ -1,0 +1,10 @@
+# /etc/systemd/system/helphik.socket
+
+[Unit]
+Description=helphik soocket
+
+[Socket]
+ListenStream=/run/helphik.sock
+
+[Install]
+WantedBy=sockets.target
