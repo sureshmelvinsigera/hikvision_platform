@@ -30,13 +30,13 @@ docker compose up -d
 
 #### Делаем миграциии баззы данных
 ````commandline
-docker-compose -f docker-compose.yml exec python manage.py makemigrations
-docker-compose -f docker-compose.yml exec python manage.py migrate
+docker-compose -f docker-compose.yml exec web python manage.py makemigrations
+docker-compose -f docker-compose.yml exec web python manage.py migrate
 ````
 
 #### Собираем статику для Nginx
 ```commandline
-docker-compose -f docker-compose.yml exec python mangage.py collecstatic    
+docker-compose -f docker-compose.yml exec web python mangage.py collecstatic    
 ```
 
 ### Профит!
