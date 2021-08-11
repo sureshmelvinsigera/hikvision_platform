@@ -8,16 +8,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wp^t3mley6nczibfq(0m)2_p&q*q@c(^%pvo&z7t9$ri(mjx^u'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
 
-TELEGRAM_BOT_NAME = ""
-TELEGRAM_BOT_TOKEN = ""
-TELEGRAM_ADMIN_LIST = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+
+TELEGRAM_BOT_NAME = os.environ.get('TELEGRAM_BOT_NAME')
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
+TELEGRAM_ADMIN_LIST = os.environ.get('TELEGRAM_ADMIN_LIST').split(' ')
 
 
 # Application definition
@@ -74,7 +76,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'media' / 'db.sqlite3',
     }
 }
 
@@ -117,7 +119,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static"),
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
